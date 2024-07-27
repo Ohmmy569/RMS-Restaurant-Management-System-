@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  load-balancer:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
+      - api
+
+  web:
+    build:
+      context: packages/web
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_BASE_URL=${BASE_URL}
+    expose:
+      - 3000
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - api
+      - database
+    deploy:
+      replicas: 1
+
+  api:
+    build:
+      context: packages/api
+      dockerfile: Dockerfile
+    expose:
+      - 5000
+    env_file:
+      - .env
+    environment:
+      SECRET: ${SECRET}
+      NODE_ENV: production
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
+    depends_on:
+      - database
+    deploy:
+      replicas: 1
+
+  database:
+    image: postgres
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:

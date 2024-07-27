@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspaces:cached
+    command: sleep infinity
+    network_mode: service:database
+    environment:
+      SECRET: secret
+      TZ: Asia/Bangkok
+      API_URL: http://127.0.0.1:5000
+      DATABASE_URL: postgres://postgres:postgres@database:5432/postgres
+    depends_on:
+      - database
+
+  database:
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      TZ: Asia/Bangkok
+      PGTZ: Asia/Bangkok
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  data:

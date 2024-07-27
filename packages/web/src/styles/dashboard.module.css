@@ -1,0 +1,22 @@
+.card {
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.card:hover {
+  box-shadow: var(--mantine-shadow-md);
+  transform: scale(1.05);
+}
+
+.icon {
+  position: relative;
+  top: rem(-20px);
+  left: calc(50% - rem(30px));
+}
+
+.icon:hover {
+  box-shadow: var(--mantine-shadow-md);
+  transform: scale(1.05);
+  background-color: #b8b8b8;
+}

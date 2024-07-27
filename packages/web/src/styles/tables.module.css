@@ -1,0 +1,14 @@
+/* Use `&:focus` when you want focus ring to be visible when control is clicked */
+.focus {
+  &:focus {
+    outline: rem(2px) solid var(--mantine-color-blue-filled);
+    outline-offset: rem(3px);
+  }
+}
+
+.focus-auto {
+  &:focus-visible {
+    outline: rem(2px) solid var(--mantine-color-blue-filled);
+    outline-offset: rem(2px);
+  }
+}

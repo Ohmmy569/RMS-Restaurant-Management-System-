@@ -1,0 +1,25 @@
+# Node
+node_modules
+
+# Nest.js
+dist
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next
+next-env.d.ts
+
+# Pnpm
+.pnpm-store
+
+# Jest
+coverage
+
+# Uploads
+uploads

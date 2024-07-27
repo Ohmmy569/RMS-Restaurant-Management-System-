@@ -1,0 +1,18 @@
+{
+  "name": "RMS",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "remoteUser": "node",
+  "workspaceFolder": "/workspaces/rms",
+  "postCreateCommand": "pnpm install && cd packages/api && prisma generate && prisma db push && pnpm run prisma:seed",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "Prisma.prisma",
+        "Postman.postman-for-vscode"
+      ]
+    }
+  }
+}

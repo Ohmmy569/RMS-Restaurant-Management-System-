@@ -1,0 +1,17 @@
+{
+  "name": "rms",
+  "version": "1.0.0",
+  "scripts": {
+    "dev:api": "cd packages/api && pnpm run dev",
+    "dev:web": "cd packages/web && pnpm run dev",
+    "build:api": "cd packages/api && pnpm run build",
+    "build:web": "cd packages/web && pnpm run build",
+    "start:api": "cd packages/api && pnpm run start",
+    "start:web": "cd packages/web && pnpm run start",
+    "format:api": "cd packages/api && pnpm run format",
+    "format:web": "cd packages/web && pnpm run format"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
